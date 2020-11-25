@@ -1,7 +1,7 @@
 import pandas as pd
 import csv
 
-election_data_path = "Resources/election_data.csv"
+election_data_path = "PyPoll/Resources/election_data.csv"
 
 election_df = pd.read_csv(election_data_path)
 election_df
@@ -13,30 +13,30 @@ candidates = election_df['Candidate'].value_counts()
 candidates
 
 percentageKhan = (2218231 / 3521001) * 100
-percentageKhan
+votesKhan = 2218231
 
 percentageCorrey = (704200 / 3521001) * 100
-percentageCorrey
+votesCorrey = 704200
 
 percentageLi = (492940 / 3521001) * 100
-percentageLi
+votesLi = 492940
 
 percentageOTooley = (105630 / 3521001) * 100
-percentageOTooley
+votesOTooley = 105630
 
 print('Election Results')
 print('--------------------')
 print('Total Votes: 3521001')
 print('--------------------')
-print(f'Khan: {str(percentageKhan)}% (2218231)')
-print(f'Correy: {str(percentageCorrey)}% (704200)')
-print(f'Li: {str(percentageLi)}% (492940)')
-print(f'OTooley: {str(percentageOTooley)}% (105630)')
+print(f'Khan: %{str(percentageKhan)} -- Total Votes: {votesKhan}')
+print(f'Correy: %{str(percentageCorrey)} -- Total Votes: {votesCorrey}')
+print(f'Li: %{str(percentageLi)} -- Total Votes: {votesLi}')
+print(f'OTooley: %{str(percentageOTooley)} -- Total Votes: {votesOTooley}')
 print('--------------------')
 print('Winner: Khan')
 print('--------------------')
 
-results = open('PyPoll/analysis/results.txt', 'w')
+results = open('PyPoll/ElectionResults.txt', 'w')
 results.write(f'Election Results\n')
 results.write(f'-----------------\n')
 results.write(f'Total Votes: 3521001\n')

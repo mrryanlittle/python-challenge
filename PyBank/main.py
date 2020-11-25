@@ -1,33 +1,56 @@
+# import dependencies
 import csv
 
-budget_csv = "Resources/budget_data.csv"
+# grab files
+budget_csv = "PyBank/Resources/budget_data.csv"
 
+# define variables
+TotalMonths = []
+TotalAmount = []
+MonthlyChangeProfit = []
+
+MonthlyChange = 0
+MonthlyChangeTotal = 0
+InitialProfitCounter = 0
+
+# open files to use
 with open(budget_csv, 'r') as csvfile:
     reader = csv.reader(csvfile)
     header = next(reader)
 
-    TotalMonths = 0
-    NetProfitLoss = 0
-    previousvalue = 0
-    for month in reader:
-        TotalMonths = TotalMonths + 1
-        NetProfitLoss = NetProfitLoss + int(month[1])
-        difference = int(month[1]) - previousvalue
-        previousvalue = int(month[1])
-        
-    GreatestIncrease = max(month[1])
-    GreatestDecrease = min(month[1])
+# for loop
+    for row in reader:
+        TotalMonths.append(row[0])
+        SumMonths = len(TotalMonths)
+        TotalAmount.append(float(row[1]))
+        ProfitForMonth = int(row[1])
+        MonthlyChange = float(ProfitForMonth)
+        MonthlyChangeTotal = MonthlyChangeTotal + MonthlyChange
+        InitialProfitCounter = int(row[1])
+        MonthlyChangeProfit.append(MonthlyChange)
+        MaxProfit = max(MonthlyChangeProfit)
+        MaxIndex = MonthlyChangeProfit.index(MaxProfit)
+        MinProfit = min(MonthlyChangeProfit)
+        MinIndex = MonthlyChangeProfit.index(MinProfit)
+        AvgChangeProfit = round(MonthlyChangeTotal/SumMonths)
+        SumAmount = sum(TotalAmount)
 
-    AvgChange = NetProfitLoss / TotalMonths
-    print("Total Months:")
-    print(TotalMonths)
-    print("Net Profit/Loss:")
-    print(NetProfitLoss)
-    print("Average Change in Profit/Loss:")
-    print(AvgChange)
+# print to terminal
+print(f'Financial Analysis')
+print(f'------------------')
+print(f'Total Months: {SumMonths}')
+print(f'Total Amount: ${SumAmount}')
+print(f'Average Monthly Change: ${SumAmount}')
+print(f'Greatest Increase in Profits: {TotalMonths[MaxIndex]} ${MaxProfit}')
+print(f'Greatest Decrease in Profits: {TotalMonths[MinIndex]} ${MinProfit}')
 
-    output = open("PyBank/analysisFinAnalysis.txt", 'w')
-    output.write("Financial Analysis\n")
-    output.write("------------------\n")
-    output.write("Total Months: 86\n")
-    output.write("Total: $38,356,388\n")
+# output to file
+output = open("PyBank/FinancialAnalysis.txt", 'w')
+output.write(f'''
+Financial Analysis
+------------------
+Total Months: {SumMonths}
+Total: ${SumAmount}
+Average Monthly Change: ${AvgChangeProfit}
+Greatest Increase in Profits: {TotalMonths[MaxIndex]} (${MaxProfit})
+Greatest Decrease in Profits: {TotalMonths[MinIndex]} (${MinProfit})''')

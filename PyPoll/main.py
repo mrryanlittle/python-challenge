@@ -2,15 +2,10 @@ import pandas as pd
 import csv
 
 election_data_path = "PyPoll/Resources/election_data.csv"
-
 election_df = pd.read_csv(election_data_path)
-election_df
 
 votes_cast = election_df.count()
-votes_cast
-
 candidates = election_df['Candidate'].value_counts()
-candidates
 
 percentageKhan = (2218231 / 3521001) * 100
 votesKhan = 2218231

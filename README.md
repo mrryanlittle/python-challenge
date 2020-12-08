@@ -2,6 +2,8 @@
 
 This is the first assignment I completed for the [UCSD Extension Data Science Bootcamp](https://bootcamp.extension.ucsd.edu/). This assignment ensured my ability to write loops, variables, loading files, printing to terminal, and to write the output of the code to a text file. This was a great inroduction to Python for me and a real motivation to keep moving forward with Python language and the UCSD Extension program. I had a good time learning how to put this all together.
 
+This was completed using python, pandas, csv, and jupyter notebook.
+
 ## Pybank
 
 The PyBank portion of this project required creating blank lists to be appended with a for loop which iterated through the csv file. The data found in the for loop was then applied to functions held in different variables.
